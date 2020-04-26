@@ -15,7 +15,7 @@ services:
         networks: 
             - motum-network
         ports: 
-            - "5506:5506"
+            - "5506:${API_PORT}"
         depends_on: 
             - user-registry
         environment: 
