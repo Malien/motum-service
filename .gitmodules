@@ -1,0 +1,6 @@
+[submodule "cloud-user-registry"]
+	path = cloud-user-registry
+	url = https://github.com/Malien/cloud-user-registry.git
+[submodule "cloud-auth"]
+	path = cloud-auth
+	url = https://github.com/Malien/cloud-auth.git
