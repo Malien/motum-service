@@ -14,4 +14,4 @@ But before you do that, make sure you provide (either through `.env` file or by 
 `postgresql://<username>:<password>@<hostname>:<port>/<database>?schema=<schema_name>`
 (for e.g. `postgresql://user:password@localhost:5432/motum?schema=public`)
 
-Unfourtunately you'll need to manually create empty `.env` files inside of the `cloud-auth` and `cloud-user-registry` folders
+Unfourtunately you'll need to manually create empty `.env` files inside of the `cloud-auth`, `cloud-user-registry` and `cloud-api-gateway` folders
