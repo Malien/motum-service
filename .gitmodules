@@ -4,3 +4,6 @@
 [submodule "cloud-auth"]
 	path = cloud-auth
 	url = https://github.com/Malien/cloud-auth.git
+[submodule "cloud-api-gateway"]
+	path = cloud-api-gateway
+	url = https://github.com/Malien/cloud-api-gateway.git
