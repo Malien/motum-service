@@ -1,7 +1,11 @@
 version: '3'
 services: 
     user-registry:
-        build: ./user-registry-service
+        build: 
+            context: ./user-registry-service
+            args:
+                envfile: .env.example
+                port: 5505
         container_name: user-registry
         networks: 
             - motum-network
@@ -11,7 +15,12 @@ services:
             DATABASE_URL: ${USER_DATABASE_URL}
 
     auth:
-        build: ./auth-service
+        build: 
+            context: ./auth-service
+            args: 
+                envfile: .env.example
+                port: 5505
+                service_port: 5506
         container_name: auth
         networks: 
             - motum-network
@@ -19,37 +28,45 @@ services:
             - user-registry
         environment: 
             BIND_ADDRESS: 0.0.0.0
-            PORT: 5506
-            SERVICE_PORT: 5509
+            PORT: 5505
+            SERVICE_PORT: 5506
             USER_REGISTRY_URL: "user-registry:5505"
             ACCESS_TOKEN_SECRET: ${ACCESS_TOKEN_SECRET}
             REFRESH_TOKEN_SECRET: ${REFRESH_TOKEN_SECRET}
             DATABASE_URL: ${AUTH_DATABASE_URL}
 
     user:
-        build: ./user-service
+        build: 
+            context: ./user-service
+            args:
+                envfile: .env.example
+                port: 5505
         container_name: user
         networks: 
             - motum-network
         environment: 
             BIND_ADDRESS: 0.0.0.0
-            PORT: 5508
+            PORT: 5505
             DATABASE_URL: ${USER_DATABASE_URL}
 
     api-gateway:
-        build: ./api-gateway-service
+        build: 
+            context: ./api-gateway-service
+            args: 
+                envfile: .env.example
+                port: 5505
         container_name: api-gateway
         networks: 
             - motum-network
         ports:
-            - ${API_PORT}:5507
+            - ${API_PORT}:5505
         depends_on: 
             - auth
         environment: 
             BIND_ADDRESS: 0.0.0.0
-            PORT: 5507
-            AUTH_SERVICE_URL: "auth:5506"
-            AUTH_VERIFICATION_SERVICE_URL: "auth:5509"
+            PORT: 5505
+            AUTH_SERVICE_URL: "auth:5505"
+            AUTH_VERIFICATION_SERVICE_URL: "auth:5506"
             USER_SERVICE_URL: "http://user:5508"
 
 networks: 
