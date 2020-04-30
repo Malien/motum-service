@@ -1,3 +1,3 @@
-touch cloud-api-gateway/.env
-touch cloud-user-registry/.env
-touch cloud-auth/.env
+touch api-gateway-service/.env
+touch user-registry-service/.env
+touch auth-service/.env
