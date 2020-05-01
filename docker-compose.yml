@@ -52,6 +52,25 @@ services:
             DATABASE_URL: ${USER_DATABASE_URL}
             BUCKET_NAME: ${BUCKET_NAME}
 
+    session:
+        build:
+            context: ./session-service
+            args:
+                envfile: .env.example
+                port: 5505
+        container_name: session
+        depends_on: 
+            - auth
+        networks: 
+            - motum-network
+        ports: 
+            - ${SESSION_PORT}:5505
+        environment:
+            BIND_ADDRESS: 0.0.0.0
+            PORT: 5505
+            DATABASE_URL: ${SESSION_DATABASE_URL}
+            AUTH_VERIFICATION_SERVICE_URL: auth:5506
+
     api-gateway:
         build: 
             context: ./api-gateway-service

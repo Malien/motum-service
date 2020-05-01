@@ -10,3 +10,6 @@
 [submodule "user-service"]
 	path = user-service
 	url = https://github.com/MotumInc/user-service.git
+[submodule "session-service"]
+	path = session-service
+	url = https://github.com/MotumInc/session-service.git
