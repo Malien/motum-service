@@ -42,12 +42,15 @@ services:
                 envfile: .env.example
                 port: 5505
         container_name: user
+        depends_on: 
+            - user-registry
         networks: 
             - motum-network
         environment: 
             BIND_ADDRESS: 0.0.0.0
             PORT: 5505
             DATABASE_URL: ${USER_DATABASE_URL}
+            BUCKET_NAME: ${BUCKET_NAME}
 
     api-gateway:
         build: 
@@ -62,6 +65,7 @@ services:
             - ${API_PORT}:5505
         depends_on: 
             - auth
+            - user
         environment: 
             BIND_ADDRESS: 0.0.0.0
             PORT: 5505
