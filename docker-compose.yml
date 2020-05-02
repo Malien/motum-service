@@ -70,6 +70,7 @@ services:
             PORT: 5505
             DATABASE_URL: ${SESSION_DATABASE_URL}
             AUTH_VERIFICATION_SERVICE_URL: auth:5506
+            USER_REGISTRY_SERVICE_URL: "user-registry:5505"
 
     api-gateway:
         build: 
